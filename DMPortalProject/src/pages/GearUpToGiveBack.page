@@ -1,0 +1,108 @@
+<apex:page controller="GearUpToGiveBack_Controller" sidebar="false" showHeader="false">
+
+<style type="text/css">
+.optionLink 
+{
+	font-size:100%; 
+	font-weight:bold;
+	text-decoration:none; 
+	color:#6E6F71; 
+}
+</style>
+
+	<apex:form >
+		<apex:pageBlock id="theBlock" mode="maindetail">
+
+			<table><tr><td>&nbsp;</td></tr></table>
+			<table>
+				<tr>
+					<td style="width:200px;"></td>
+					<td>
+						<table cellpadding="0" border="0" frame="void" style="color:#6E6F71;">
+							<tr>
+								<td>
+								
+									<table>
+										<tr>
+											<td align="left"><apex:image value="{!URLFOR($Resource.gutgb, 'gutgb.jpg')}"/></td>
+										</tr>
+									</table>
+									<table border="0" width="100%" rules="top"><tr><td>&nbsp;</td></tr></table>
+									<table>
+										<tr>
+											<!-- A-Z -->
+											<apex:outputPanel >
+												<table>
+													<tr>
+														<td><apex:outputPanel ><apex:outputText value="A" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="A"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="B" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="B"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="C" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="C"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="D" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="D"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="E" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="E"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="F" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="F"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="G" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="G"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="H" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="H"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="I" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="I"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="J" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="J"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="K" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="K"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="L" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="L"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="M" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="M"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="N" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="N"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="O" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="O"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="P" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="P"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="Q" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="Q"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="R" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="R"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="S" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="S"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="T" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="T"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="U" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="U"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="V" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="V"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="W" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="W"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="X" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="X"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="Y" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="Y"/></apex:actionSupport></apex:outputPanel></td><td>|</td>
+														<td><apex:outputPanel ><apex:outputText value="Z" style="font-weight:bold;cursor:pointer;text-align:left;color:#6E6F71;"/><apex:actionSupport event="onclick" action="{!clickedLetter}" rerender="list" status="actionStatus"><apex:param name="letter" value="Z"/></apex:actionSupport></apex:outputPanel></td><td></td>
+													</tr>
+												</table>
+											</apex:outputPanel>
+
+											<table border="0" width="100%" rules="top"><tr><td></td></tr></table>
+							
+											<!-- SEARCH BOX -->
+											<apex:outputPanel >
+												<apex:inputText value="{!searchString}"/>&nbsp;
+												<apex:commandButton action="{!searchSchools}" value="Search" rerender="list" status="actionStatus"/>
+											</apex:outputPanel>
+										</tr>
+									</table>
+
+
+									<table border="0" width="100%" rules="top"><tr><td>&nbsp;</td></tr></table>
+
+									<!-- RESULT LIST -->
+									<apex:outputPanel id="list">
+										<apex:pageBlockTable value="{!accountListWrapper}" var="item">
+											<apex:column headerValue="School"><apex:outputText value="{!item.a.Name}"/></apex:column>
+											<apex:column headerValue="Address"><apex:outputText value="{!item.a.BillingStreet}"/></apex:column>
+											<apex:column headerValue="City"><apex:outputText value="{!item.a.BillingCity}"/></apex:column>
+											<apex:column headerValue="State"><apex:outputText value="{!item.a.BillingState}"/></apex:column>
+											<apex:column headerValue="ZIP"><apex:outputText value="{!item.a.BillingPostalCode}"/></apex:column>
+											<apex:column headerValue="Member ID"><apex:outputText value="{!item.memberId}"/></apex:column>
+											<apex:column headerValue="Password"><apex:outputText value="{!item.password}"/></apex:column>
+										</apex:pageBlockTable>
+										<apex:actionStatus id="actionStatus" startText="processing..."/>
+									</apex:outputPanel>
+								
+								</td>
+							</tr>
+						</table>					
+					
+					</td>
+				</tr>
+			</table>
+			
+			
+
+
+        	
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

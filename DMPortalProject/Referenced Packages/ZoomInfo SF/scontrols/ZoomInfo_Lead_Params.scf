@@ -1,0 +1,17 @@
+<script type="text/javascript">
+
+var sQueryID = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($Request.QueryID, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+var sZICompanyID= "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Lead.ZI_Company2__c, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+var sZIPersonID= "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Lead.ZI_Person2__c, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+var sCompanyName = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Lead.Company, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+var sFirstName = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Lead.FirstName, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+var sLastName = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Lead.LastName, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+var sLeadLink = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Lead.Link, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+
+sZILeadParams = 
+"&LeadId={!Lead.Id}&OrgId={!$Organization.Id}&ZICompany=" + sZICompanyID + "&ZIPerson=" + sZIPersonID + "&CompanyName=" + sCompanyName + "&FirstName=" + sFirstName + "&LastName=" + sLastName + "&RetURL=" + sLeadLink;
+
+sZILeadParamsForceSelect = 
+"&LeadId={!Lead.Id}&OrgId={!$Organization.Id}&CompanyName=" + sCompanyName + "&FirstName=" + sFirstName + "&LastName=" + sLastName + "&RetURL=" + sLeadLink + "&QueryID=" + sQueryID;
+
+</script>

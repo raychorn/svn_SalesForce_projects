@@ -1,0 +1,43 @@
+<script type="text/javascript">
+// Server URL
+var sAppURLSalesForce = "https://sf.zoominfo.com/SFSearch/";
+
+var sPersonLookUp     = sAppURLSalesForce + "PersonLookup.aspx";
+var sCompanyLookUp = sAppURLSalesForce + "CompanyLookup.aspx";
+var sMyAccount              = sAppURLSalesForce + "AccountInfo.aspx";
+var sPurchaseImport    = sAppURLSalesForce + "PurchaseImports.aspx";
+var sZEUpgrade            = sAppURLSalesForce + "PremiumUpgrade.aspx";
+var sHome                      = sAppURLSalesForce + "Home.aspx";
+var sAppVersion            = "&v=2.1.3.4";
+
+
+var sSessionParams = "SessionID={!$Api.Session_ID}&ServerURL={!$Api.Partner_Server_URL_90}" + sAppVersion;
+
+// Page URLs
+var sZICompanyUrl = sCompanyLookUp + "?" + sSessionParams;
+var sZIPersonUrl = sPersonLookUp + "?" + sSessionParams;
+
+//Get ZoomInfo Tab URL 
+var sZITabUrl= ""; 
+var result = sforce.connection.describeTabs(); 
+for (var i=0;i<result.length;i++) 
+{ 
+  var tabSet = result[i]; 
+  if (tabSet.label == "ZoomInfo") 
+  { 
+    var tabs = tabSet.get("tabs"); 
+    for( var j=0; j<tabs.length; j++) 
+    { 
+      var tab = tabs[j]; 
+      if (tab.label == "ZoomInfo") 
+      { 
+        sZITabUrl= tab.url; 
+        break; 
+      } 
+    } 
+    break; 
+  } 
+} 
+
+var sZITabUrlParam = escape(sZITabUrl);
+</script>

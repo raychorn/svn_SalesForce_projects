@@ -1,0 +1,65 @@
+<html>
+<head>
+<script type="text/javascript" src="/soap/ajax/9.0/connection.js"></script>
+{!INCLUDE($SControl.ZoomInfo_Main_Params)}
+<script type="text/javascript">
+var aValidParams  = ["ContactId","LeadId","AccountId","OrgId","ZIPerson","ZICompany","CompanyName","FirstName","LastName","RetURL","View","Type","SFTab","QueryID"];
+
+function IsValidParam(sParam)
+{
+   for (var i=0;i<aValidParams.length;i++)
+   {
+       if (sParam == aValidParams[i])
+           return true;
+   }
+   return false;
+}
+
+function redirectPage() 
+{
+     var qsParam = new Array();
+     var parms = parent.location.search.substring(1).split('&');
+     for (var i=0; i<parms.length; i++) 
+     {
+          var pos = parms[i].indexOf('=');
+	  if (pos > 0) 
+	  {
+	       var key = parms[i].substring(0,pos);
+	       var val = parms[i].substring(pos+1);
+               if (IsValidParam(key))
+                    qsParam[key] = val;
+  	  }
+     }
+
+     var sNewQS = "";
+     var sDel = "";
+     for (var key in  qsParam)
+     {
+          sNewQS += sDel + key + "=" + qsParam[key];
+	  sDel = "&";
+     }
+
+     if (qsParam["Type"])
+     {
+          if (qsParam["Type"] == "MyAccount")
+                 document.location.replace(sMyAccount  +  '?' + sSessionParams  + '&' + sNewQS);
+          else
+          if (qsParam["Type"] == "PurchaseImport")
+                 document.location.replace(sPurchaseImport  +  '?' + sSessionParams  + '&' + sNewQS);
+          else
+          if (qsParam["Type"] == "ZEUpgrade")
+                 document.location.replace(sZEUpgrade +  '?' + sSessionParams  + '&' + sNewQS);
+          else
+          if (qsParam["Type"] == "Lead" || qsParam["Type"] == "Contact")
+                 document.location.replace(sPersonLookUp +  '?' + sSessionParams  + '&' + sNewQS);
+          else
+                 document.location.replace(sCompanyLookUp +  '?' + sSessionParams  + '&' + sNewQS);
+     }
+     else
+          document.location.replace(sHome + '?' + sSessionParams);
+   
+}  
+</script>
+</head>
+<body onload=redirectPage()></body>
+</html>

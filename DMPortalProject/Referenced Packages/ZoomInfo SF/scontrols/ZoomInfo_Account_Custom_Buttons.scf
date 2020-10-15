@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>ZoomInfo - Custom Account Buttons</title>
+    <style type="text/css">
+		body
+		{
+			text-align:center;background-color:#f3f3ec;
+		}
+		.btn
+		{
+			color: #fff;
+			background: #69c url("https://na5.salesforce.com/servlet/servlet.FileDownload?file=01570000000Qfqy") repeat-x bottom;
+			font-family: Verdana, Tahoma, Arial;
+			font-size: 9px;
+			font-weight: bold;
+			padding: 1px 3px 1px 3px;
+			border: 0;
+			border-right: 1px solid #369;
+			border-bottom: 1px solid #369;
+			margin: 1px;
+			cursor: pointer;
+		}
+    </style>
+</head>
+<body>
+ <input type="button" id="update_account" name="update_account" class="btn" value="Update from ZoomInfo" onclick="window.parent.location = '{!URLFOR($Action.Account.Update_Account_s, Account.Id)}'" />
+ <input type="button" id="view_company" name="view_company" class="btn" value="View Company Profile" onclick="window.parent.location = '{!URLFOR($Action.Account.View_Company_Profile, Account.Id)}'" />
+ <input type="button" id="find_employees" name="find_employees" class="btn" value="Find Employees" onclick="window.parent.location = '{!URLFOR($Action.Account.Find_Employees, Account.Id)}'" />
+ <input type="button" id="find_competitors" name="find_competitors" class="btn" value="Find Competitors" onclick="window.parent.location = '{!URLFOR($Action.Account.Find_Competitors, Account.Id)}'" />
+</body>
+</html>

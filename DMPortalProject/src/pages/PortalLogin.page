@@ -1,0 +1,239 @@
+<apex:page controller="PortalLogin_Controller" sidebar="false" showheader="false" cache="false">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"/>
+<style type="text/css">
+body  {
+	background: #FFFFFF;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	color: #000000;
+}
+#container { 
+	width: 990px;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 1px solid #C8C9CB;
+	text-align: left;
+} 
+#mainContent {
+ 	width: 990px;
+} 
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+</style>
+<script type="text/javascript" language="JavaScript">
+	function handle_resize() {
+		var w = parseInt($(window).width().toString());
+		var wC = parseInt($("#mainContent").css('width').toString());
+		var wL = ((w > wC) ? (w-wC)/2 : 0);
+		$("#container").css('margin-left',wL+'px').css('margin-top','10px');
+	}
+	$(document).ready(function(){
+		$(window).resize(function() {
+			handle_resize();
+		});
+		handle_resize();
+		function issue_warning() {
+			$("#status_span").html('WARNING: Cannot login at this time, please double-check your credentials and try again...');
+			$("#loginButton").removeAttr('disabled');
+		}
+		$("#loginButton").click(
+			function () {
+				$("#loginButton").attr('disabled', 'disabled');
+				var username$ = $('#memberid').val();
+				var password$ = $('#password').val();
+				$("#status_span").html("Working...");
+				$.getJSON("{!$Page.AjaxResponse}", {
+					"core.apexpages.devmode.url" :'1',
+					"username" :username$,
+					"password" :password$
+				}, function(data) {
+					$("#status_span").html('');
+					try {
+						if (data.url) {
+							$.get(data.url, function(data) {
+								alert(data);
+							});
+							//window.location.href = data.url.replace('apex/','wsiportal/');
+						} else { issue_warning() }
+					} catch (e) { issue_warning()}
+				});				
+			}
+		);
+	 });
+</script>
+     <apex:pageBlock title="Designer Marketplace Portal Login" rendered="{!isStatusVisible}">
+         <UL>
+         <LI><b>{!status}</b></LI>
+         </UL>
+     </apex:pageBlock>
+	<div id="container">
+		<div id="mainContent">
+	        <apex:pageBlock id="mainLoginBlock" mode="maindetail" rendered="{!(isRunningLocally == true)}">
+	            <table><tr><td>&nbsp;</td></tr></table>
+	            <table>
+	            	<tr>
+	            		<td colspan="2" align="left"><b><span id="status_span"></span></b></td>
+	            	</tr>
+	                <tr>
+	                    <td></td>
+	                    <td>
+	                        <table cellpadding="0" border="0" frame="void" style="color:#6E6F71;">
+	                            <tr>
+	                                <td>
+	                                    <table>
+	                                        <tr>
+	                                            <td align="left"><apex:image value="{!URLFOR($Resource.FWDesignerMarkePlaceNavigationStyleGuide, 'DMPortalHeader.jpg')}"/></td>
+	                                        </tr>
+	                                    </table>
+	                                    <table border="0" width="100%" rules="top"><tr><td>&nbsp;</td></tr></table>
+	                                    <table>
+	                                        <tr>
+	                                            <td width="*" colspan="2" align="left"><apex:outputText value="SIGN IN TO MANAGE YOUR ACCOUNT" style="color:#6E6F71;font-size: 14;font-weight: bold;"/></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td width="*" colspan="2" align="left" style="padding-top: 15px;"><apex:outputText value="Please sign in using your member ID and Password" style="color:#6E6F71;"/></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td width="*" colspan="2" align="left"><apex:outputText value="*Required Fields" style="color:#6E6F71;"/></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td width="*" colspan="2" align="left"><hr/></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td width="80px" align="left"><apex:outputText value="Member ID: *" style="color:#6E6F71;"/></td>
+	                                            <td align="left">
+										        	<input id="memberid" name="memberid" value="{!memberId}" maxlength="255" style="color:#6E6F71; width:300px;"/>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                        	<td colspan="2" align="left">
+											        <apex:pageBlock id="mainLoginBlock" mode="maindetail" rendered="{!(isForgotPassword == false)}">
+		                                        		<table width="100%">
+		                                        			<tr>
+					                                            <td align="left"><span style="color:#6E6F71;">Password: *</span></td>
+					                                            <td align="left">
+														        	&nbsp;&nbsp;&nbsp;<input id="password" name="password" value="{!password}" maxlength="255" style="color:#6E6F71; width:300px;"/>
+					                                            </td>
+		                                        			</tr>
+		                                        		</table>
+											        </apex:pageBlock>
+	                                        	</td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td width="80px" align="left">&nbsp;</td>
+	                                            <td align="left"><apex:outputText value="Passwords are case sensitive" style="color:#6E6F71;"/></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td width="*" colspan="2" align="left"><hr/></td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td width="80px" align="left">&nbsp;</td>
+	                                            <td align="left">
+												    <apex:form >
+		                                            	<apex:commandLink action="{!forgotPasswordRequest}" value="Forgot your Password?" id="theForgotPasswordLink" rendered="{!(isForgotPassword == false)}"/>
+		                                            	<apex:commandButton style="color:#6E6F71;border: none;margin-left:-50px;margin-right:20px;width:100px;" value="Back" image="{!URLFOR($Resource.fwbuttons, 'Back.png')}" action="{!forgotpasswordCancel}" rendered="{!(isForgotPassword == true)}"/>
+		                                            	<apex:commandButton style="color:#6E6F71;border: none;width:100px;" value="Submit" image="{!URLFOR($Resource.fwbuttons, 'Submit01.png')}" action="{!forgotpassword}" rendered="{!(isForgotPassword == true)}"/>
+												    </apex:form>
+	                                            </td>
+	                                        </tr>
+	                                        <tr>
+	                                            <td></td>
+	                                            <td align="left">
+											        <apex:pageBlock id="mainLoginButtonBlock" mode="maindetail" rendered="{!(isForgotPassword == false)}">
+														<input id="loginButton" type="image" class="btn" style="color:#6E6F71; border: none; width: 100px;" src="{!URLFOR($Resource.fwbuttons, 'SignIn.png')}"/>	                                            
+											        </apex:pageBlock>
+	                                            </td>
+	                                        </tr>
+	                                    </table>
+	                                    <table border="0" width="100%" rules="top"><tr><td>&nbsp;</td></tr></table>
+	                                </td>
+	                            </tr>
+	                        </table>                    
+	                    </td>
+	                </tr>
+	            </table>
+	        </apex:pageBlock>       
+	        <apex:pageBlock id="mainBlock" mode="maindetail" rendered="{!(isRunningLocally == false)}">
+			    <apex:form >
+		            <table><tr><td>&nbsp;</td></tr></table>
+		            <table>
+		                <tr>
+		                    <td>
+		                    </td>
+		                    <td>
+		                        <table cellpadding="0" border="0" frame="void" style="color:#6E6F71;">
+		                            <tr>
+		                                <td>
+		                                    <table>
+		                                        <tr>
+		                                            <td align="left"><apex:image value="{!URLFOR($Resource.FWDesignerMarkePlaceNavigationStyleGuide, 'DMPortalHeader.jpg')}"/></td>
+		                                        </tr>
+		                                    </table>
+		                                    <table border="0" width="100%" rules="top"><tr><td>&nbsp;</td></tr></table>
+		                                    <table>
+		                                        <tr>
+		                                            <td width="*" colspan="2"><apex:outputText value="SIGN IN TO MANAGE YOUR ACCOUNT" style="color:#6E6F71;font-size: 14;font-weight: bold;"/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td width="*" colspan="2" style="padding-top: 15px;"><apex:outputText value="Please sign in using your member ID and Password" style="color:#6E6F71;"/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td width="*" colspan="2"><apex:outputText value="*Required Fields" style="color:#6E6F71;"/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td width="*" colspan="2"><hr/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td width="80px"><apex:outputText value="Member ID: *" style="color:#6E6F71;"/></td>
+		                                            <td><apex:inputText value="{!memberId}" id="memberid" style="color:#6E6F71; width:300px"/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td><apex:outputText value="Password: *" style="color:#6E6F71;" rendered="{!(isForgotPassword == false)}"/></td>
+		                                            <td><apex:inputText value="{!password}" id="password" style="color:#6E6F71; width:300px" rendered="{!(isForgotPassword == false)}"/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td width="80px">&nbsp;</td>
+		                                            <td><apex:outputText value="Passwords are case sensitive" style="color:#6E6F71;"/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td width="*" colspan="2"><hr/></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td width="80px">&nbsp;</td>
+		                                            <td>
+		                                            	<apex:commandLink action="{!forgotPasswordRequest}" value="Forgot your Password?" id="theForgotPasswordLink" rendered="{!(isForgotPassword == false)}"/>
+		                                            	<apex:commandButton style="color:#6E6F71;border: none;margin-left:-50px;margin-right:20px;width:100px;" value="Back" image="{!URLFOR($Resource.fwbuttons, 'Back.png')}" action="{!forgotpasswordCancel}" rendered="{!(isForgotPassword == true)}"/>
+		                                            	<apex:commandButton style="color:#6E6F71;border: none;width:100px;" value="Submit" image="{!URLFOR($Resource.fwbuttons, 'Submit01.png')}" action="{!forgotpassword}" rendered="{!(isForgotPassword == true)}"/>
+		                                            </td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td></td>
+		                                            <td><apex:commandButton style="color:#6E6F71;border: none;width:100px;" value="Login" image="{!URLFOR($Resource.fwbuttons, 'SignIn.png')}" action="{!login}" rendered="{!(isForgotPassword == false)}"/></td>
+		                                        </tr>
+		                                    </table>
+		                                    <table border="0" width="100%" rules="top"><tr><td>&nbsp;</td></tr></table>
+		                                </td>
+		                            </tr>
+		                        </table>                    
+		                    </td>
+		                </tr>
+		            </table>
+			    </apex:form>
+	        </apex:pageBlock>       
+		</div>
+		<br class="clearfloat" />
+	</div>
+</apex:page>

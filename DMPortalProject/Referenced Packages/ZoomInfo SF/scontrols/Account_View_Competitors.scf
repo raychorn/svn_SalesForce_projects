@@ -1,0 +1,31 @@
+<html>
+<head>
+<script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script>
+{!INCLUDE($SControl.ZoomInfo_Main_Params)}
+{!INCLUDE($SControl.ZoomInfo_Account_Params)}
+<script type="text/javascript">
+
+var sQueryID = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($Request.QueryID, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+var sZICompanyID = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.ZI_Company2__c, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sForceSelect = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($Request.ForceSelect, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+
+var sZIPageUrl = sZICompanyUrl;
+var sZIParams = sZIAccountParams + "&QueryID=" + sQueryID + "&View=true&Type=Competitor";
+var sZIParamsForceSelect = sZIAccountParamsForceSelect + "&QueryID=" + sQueryID + "&View=true&Type=Competitor";
+
+//Create Tab Parameters QueryString
+var sSFTabUrlParam =  escape("https://" + location.host + 
+"{!URLFOR( $Action.Account.Find_Competitors, Account.Id,[retURL=""],false)}");
+var sTabParams =   "&ZoomTab=true&SFTab=" + sSFTabUrlParam;
+
+//Redirect based on status
+var sRedirectUrl = sZIPageUrl + sZIParamsForceSelect + sTabParams;
+if (sForceSelect != "true" && sZICompanyID != "")
+    sRedirectUrl = sZIPageUrl + sZIParams + sTabParams;
+
+location.replace(sRedirectUrl);     
+
+</script>
+</head>
+<body></body>
+</html>

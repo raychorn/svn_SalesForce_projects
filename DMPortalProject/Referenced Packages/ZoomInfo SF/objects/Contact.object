@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>ZI_ImportedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ZoomInfo Imported Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ZoomInfo Imported Date</inlineHelpText>
+        <label>ZoomInfo Imported Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ZI_Person2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>ZoomInfo Person ID2</label>
+        <length>12</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ZI_Person__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ZoomInfo Person ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>Update_Contact</fullName>
+        <availability>online</availability>
+        <description>Update from ZoomInfo</description>
+        <displayType>button</displayType>
+        <height>2000</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Update from ZoomInfo</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Contact_Update_from_Zoom</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_Contact_s</fullName>
+        <availability>online</availability>
+        <description>Update Contact with ZoomInfo Person data</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Update from ZoomInfo</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Contact_Update_from_Zoom</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>View_Company_Profile</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>View Company Profile</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>if (&apos;{!Account.Id}&apos; == &apos;&apos;)
+{
+  alert(&quot;There is no Account associated with this Contact.&quot;);
+}
+else
+{
+  var sRedirURL = &quot;{!URLFOR($Action.Contact.View_Zoom_Company, Contact.Id, [retURL=&quot;&quot;], false)}&quot;;
+
+  parent.location.href = sRedirURL;
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>View_Person_Profile</fullName>
+        <availability>online</availability>
+        <description>View Person Profile</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>View Person Profile</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Contact_View_Person_Profile</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>View_Zoom_Company</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>View Zoom Company</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Contact_View_Company_Profile</scontrol>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,222 @@
+<apex:page controller="ContactUs_Controller" sidebar="false" showheader="false">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"/>
+<style type="text/css">
+.wrap {
+}
+.outerWrap {
+}
+#container { 
+	width: 990px;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 1px solid #C8C9CB;
+	text-align: left;
+} 
+#mainContent {
+ 	width: 990px;
+} 
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+</style>
+<script type="text/javascript" language="JavaScript">
+	function handle_resize() {
+		var w = parseInt($(window).width().toString());
+		var wC = parseInt($("#mainContent").css('width').toString());
+		var wL = ((w > wC) ? (w-wC)/2 : 0);
+		$("#container").css('margin-left',wL+'px').css('margin-top','10px');
+	}
+	$(document).ready(function(){
+		$(window).resize(function() {
+			handle_resize();
+		});
+		handle_resize();
+	 });
+</script>
+<apex:pageBlock id="mainBlock" mode="maindetail">
+	<div id="container">
+		<div id="mainContent">
+            <div id="outerWrap" class="outerWrap">
+	            <table>
+	                <tr>
+	                    <td width="0px"></td>
+	                    <td width="100%">
+	                        <c:PortalHeader />
+	                        <div id="wrap" class="wrap">
+						        <apex:pageBlock id="contactBlock" mode="maindetail" rendered="true">
+								    <apex:form >
+				                        <table>
+				                        	<tr>
+				                        		<td width="150px">&nbsp;</td>
+				                        		<td width="400px">
+							                        <table width="100%" align="left">
+							                            <tr>
+							                                <td align="left"><span style="color:#6E6F71;font-size:16;font-weight:bold;"><BIG>Contact Us</BIG></span></td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left"><hr/></td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left">
+							                                    <table width="70%">
+							                                        <tr>
+							                                            <td width="33%">
+							                                            	<span style="color:#6E6F71;font-size:12;font-weight:bold;">Phone</span>
+							                                            </td>
+							                                            <td width="33%">
+							                                            </td>
+							                                            <td width="33%">
+							                                            </td>
+							                                        </tr>
+							                                    </table>
+							                                </td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left">
+							                                    <table width="70%">
+							                                        <tr>
+							                                            <td width="33%">&nbsp;</td>
+							                                            <td width="33%">
+							                                            	<span style="color:#6E6F71;font-size:12;font-weight:bold;">US Toll Free</span>
+							                                            </td>
+							                                            <td width="33%">
+							                                            	<span style="color:#6E6F71;font-size:12;font-weight:bold;">(888) 837-4888</span>
+							                                            </td>
+							                                        </tr>
+							                                    </table>
+							                                </td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left">
+							                                    <table width="70%">
+							                                        <tr>
+							                                            <td width="33%">&nbsp;</td>
+							                                            <td width="33%">
+							                                            	<span style="color:#6E6F71;font-size:12;font-weight:bold;">Outside the US</span>
+							                                            </td>
+							                                            <td width="33%">
+							                                            	<span style="color:#6E6F71;font-size:12;font-weight:bold;">(702) 360-7147</span>
+							                                            </td>
+							                                        </tr>
+							                                    </table>
+							                                </td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left"><hr/></td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left">
+							                                    <table width="70%">
+							                                        <tr>
+							                                            <td width="33%">
+							                                            	<span style="color:#6E6F71;font-size:12;font-weight:bold;">Email</span>
+							                                            </td>
+							                                            <td width="*"></td>
+							                                        </tr>
+							                                    </table>
+							                                </td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left">
+							                                    <table width="100%">
+							                                        <tr>
+							                                            <td width="25%">&nbsp;</td>
+							                                            <td width="*">
+							                                            	<span style="color:#6E6F71;font-size:12;font-weight:bold;">trade@williams-sonomainc.com</span>
+							                                            </td>
+							                                        </tr>
+							                                    </table>
+							                                </td>
+							                            </tr>
+							                            <tr>
+							                                <td style="height:100px;">&nbsp;</td>
+							                            </tr>
+							                            <tr>
+							                                <td align="center" style="width:50%;"><apex:commandButton style="border:0px; width:100px" id="cancelbtn" value="Back" action="{!cancel}" image="{!URLFOR($Resource.fwbuttons, 'Back.png')}"/></td>
+							                            </tr>
+							                        </table>
+				                        		</td>
+				                        	</tr>
+				                        </table>
+								    </apex:form>
+						        </apex:pageBlock>
+						        <apex:pageBlock id="contactBlock1" mode="maindetail" rendered="false">
+								    <apex:form >
+				                        <table>
+				                        	<tr>
+				                        		<td width="150px">&nbsp;</td>
+				                        		<td width="400px">
+							                        <table width="100%" align="left">
+							                            <tr>
+							                                <td align="left"><BIG><apex:outputText value="Contact Us" style="color:#6E6F71;font-size:16;font-weight:bold;"/></BIG></td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left"><hr/></td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left">
+							                                    <table width="70%">
+							                                        <tr>
+							                                            <td width="33%">
+							                                                <apex:outputText value="Phone" style="color:#6E6F71;font-size:12;font-weight:bold;"/>
+							                                            </td>
+							                                            <td width="33%">
+							                                                <apex:outputText value="{!phoneType}" style="color:#6E6F71;font-size:12;font-weight:bold;"/>
+							                                            </td>
+							                                            <td width="33%">
+							                                                <apex:outputText value="{!currentUser.Phone}" style="color:#6E6F71;font-size:12;font-weight:bold;"/>
+							                                            </td>
+							                                        </tr>
+							                                    </table>
+							                                </td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left"><hr/></td>
+							                            </tr>
+							                            <tr>
+							                                <td align="left">
+							                                    <table width="70%">
+							                                        <tr>
+							                                            <td width="33%">
+							                                                <apex:outputText value="Email" style="color:#6E6F71;font-size:12;font-weight:bold;"/>
+							                                            </td>
+							                                            <td width="*">
+							                                                <apex:outputText value="{!currentUser.Email}" style="color:#6E6F71;font-size:12;font-weight:bold;"/>
+							                                            </td>
+							                                        </tr>
+							                                    </table>
+							                                </td>
+							                            </tr>
+							                            <tr>
+							                                <td style="height:100px;">&nbsp;</td>
+							                            </tr>
+							                            <tr>
+							                                <td align="center" style="width:50%;"><apex:commandButton style="border:0px; width:100px" id="cancelbtn" value="Back" action="{!cancel}" image="{!URLFOR($Resource.fwbuttons, 'Back.png')}"/></td>
+							                            </tr>
+							                        </table>
+				                        		</td>
+				                        	</tr>
+				                        </table>
+								    </apex:form>
+						        </apex:pageBlock>
+	                        </div>
+	                    </td>
+	                </tr>
+	            </table>
+            </div>
+		</div>
+		<br class="clearfloat" />
+	</div>
+</apex:pageBlock>
+</apex:page>

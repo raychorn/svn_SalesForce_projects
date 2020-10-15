@@ -1,0 +1,161 @@
+<apex:page id="modifyMember" controller="ModifyAccountMembership_Controller" sidebar="false" showheader="false">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"/>
+<style type="text/css">
+.btn2 {
+    margin: 0 0 0 0;
+    color:#ffffff; 
+     background-image: url("{!URLFOR($Resource.FWDesignerMarkePlaceNavigationStyleGuide, 'bgWhite.jpg')}");
+}
+.wrap {
+}
+.outerWrap {
+}
+#container { 
+	width: 990px;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 1px solid #C8C9CB;
+	text-align: left;
+} 
+#mainContent {
+ 	width: 990px;
+} 
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+</style>
+<script type="text/javascript" language="JavaScript">
+	function handle_resize() {
+		var w = parseInt($(window).width().toString());
+		var wC = parseInt($("#mainContent").css('width').toString());
+		var wL = ((w > wC) ? (w-wC)/2 : 0);
+		$("#container").css('margin-left',wL+'px').css('margin-top','10px');
+	}
+	$(document).ready(function(){
+		$(window).resize(function() {
+			handle_resize();
+		});
+		handle_resize();
+	 });
+</script>
+	<div id="container">
+		<div id="mainContent">
+            <div id="outerWrap" class="outerWrap">
+	            <table>
+	                <tr>
+	                    <td width="0px"></td>
+	                    <td width="100%">
+	                        <c:PortalHeader />
+	                        <div id="wrap" class="wrap">
+	                        	<table id="outer-table" width="100%">
+	                        		<tr>
+	                        			<td>
+											<apex:pageBlock id="memberBlock" mode="maindetail">
+											    <apex:form id="memberForm" enctype="application/x-www-form-urlencoded">
+													<table width="100%" style="padding-left: 50px;">
+													    <tr>
+													        <td colspan="3"><apex:outputText value="{!status}" style="color:#6E6F71;"/></td>
+													    </tr>
+													    <tr>
+													        <td colspan="3"><big><apex:outputText value="Membership Information:" style="color:#6E6F71;font-weight:bold;"/></big></td>
+													    </tr>
+													    <tr>
+													        <td width="80px">
+													        	<apex:outputText value="Member ID:" style="color:#6E6F71;"/>
+													        </td>
+													        <td>
+													        	<apex:outputText value="{!memberid}" style="color:#6E6F71;" rendered="{!(isChangingMember == false)}"/>
+													        	<apex:inputText id="memberid" value="{!memberid}" style="color:#6E6F71; width: 300px;" rendered="{!(isChangingMember == true)}"/>
+													        </td>
+													    </tr>
+													    <tr>
+													        <td>
+													        	<apex:outputText value="Level:" style="color:#6E6F71;"/>
+													        </td>
+													        <td>
+													        	<apex:outputText value="{!membership}" style="color:#6E6F71;" rendered="{!(isChangingMember == false)}"/>
+													        	<apex:inputText id="membership" value="{!membership}" style="color:#6E6F71; width: 300px;" rendered="false"/>
+																<apex:selectList id="levels" value="{!membership}" size="1" required="true" rendered="{!(isChangingMember == true)}">
+																  <apex:selectOptions value="{!levels}"/>
+																</apex:selectList>
+													        </td>
+													    </tr>
+													    <tr>
+													        <td>
+													        	<apex:outputText value="Expires:" style="color:#6E6F71;"/>
+													        </td>
+													        <td>
+													        	<apex:outputText value="{!memberexpiration}" style="color:#6E6F71;" rendered="{!(isChangingMember == false)}"/>
+													        	<apex:inputText id="memberexpiration" value="{!memberexpiration}" style="color:#6E6F71; width: 300px;" rendered="{!(isChangingMember == true)}"/>
+													        </td>
+													    </tr>
+													    <tr>
+													        <td>
+													            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px;" value="Change Member" action="{!modifyMember}" rendered="{!(isChangingMember == false)}"/>
+													            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px;" value="Change Member" action="{!changeMember}" rendered="{!(isChangingMember == true)}"/>
+													        </td>
+													        <td>&nbsp;</td>
+													        <td>
+													            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px;" value="Cancel Change Member" action="{!cancelChangeMember}" image="{!URLFOR($Resource.fwbuttons, 'Cancel.png')}" rendered="{!(isChangingMember == true)}"/>
+													        </td>
+													    </tr>
+													</table>
+											    </apex:form>
+											</apex:pageBlock>
+	                        			</td>
+	                        		</tr>
+	                        		<tr>
+	                        			<td>
+											<apex:pageBlock id="usersBlock" mode="maindetail">
+											    <apex:form id="usersForm" enctype="application/x-www-form-urlencoded">
+													<table width="100%" style="padding-left: 50px;">
+													    <tr>
+													        <td colspan="3"><span style="color:#6E6F71;font-weight:bold;"><big>Users:</big></span></td>
+													    </tr>
+													    <tr>
+													        <td>
+													        	<span style="color:#6E6F71;">User:</span>
+													        </td>
+													        <td>
+													        	<apex:outputText value="{!usersname} ({!userid})" style="color:#6E6F71;" rendered="{!(isChoosingUser == false)}"/>
+																<apex:selectList id="userid" value="{!userid}" size="1" required="true" rendered="{!(isChoosingUser == true)}">
+																  <apex:selectOptions value="{!users}"/>
+																</apex:selectList>
+													        </td>
+													    </tr>
+													    <tr>
+													        <td>
+													            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px;" value="Choose User" action="{!choosingUser}" rendered="{!(isChoosingUser == false)}"/>
+													            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px;" value="Choose User" action="{!chooseUser}" rendered="{!(isChoosingUser == true)}"/>
+													        </td>
+													        <td>&nbsp;</td>
+													        <td>
+													            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px; width: 100px;" value="Cancel Choose User" action="{!cancelChoosingUser}" image="{!URLFOR($Resource.fwbuttons, 'Cancel.png')}" rendered="{!(isChoosingUser == true)}"/>
+													        </td>
+													    </tr>
+													</table>
+											    </apex:form>
+											</apex:pageBlock>
+	                        			</td>
+	                        		</tr>
+	                        	</table>
+	                        </div>
+	                    </td>
+	                </tr>
+	            </table>
+            </div>
+		</div>
+		<br class="clearfloat" />
+	</div>
+</apex:page>

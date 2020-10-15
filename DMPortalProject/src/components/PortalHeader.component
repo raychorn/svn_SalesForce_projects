@@ -1,0 +1,140 @@
+<apex:component id="PortalHeader" controller="PortalHeader_Controller">
+<style type="text/css">
+.wrapTable {
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 1px solid;
+    border-top-color: #6C6D6F;
+    border-bottom: 1px solid;
+    border-bottom-color: #6C6D6F;
+    border-color: black;
+}
+.optionLink {
+    font-size:100%; 
+    font-weight:bold;
+    text-decoration:none; 
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+body a:hover {
+    background: none repeat scroll 0 0 #E7E7E7;
+    color: #6C6D6F;
+    text-decoration: none;
+    height: 100%;
+} 
+body a:active {
+    color: #6C6D6F;
+    text-decoration: none;
+    height: 100%;
+} 
+body a:visited {
+    background: none repeat scroll 0 0 #E7E7E7;
+    color: #6C6D6F;
+    text-decoration: none;
+    height: 100%;
+} 
+body a:link {
+    color: #6C6D6F;
+    text-decoration: none;
+    height: 100%;
+} 
+.spanWrapper {
+	margin-top: -5px;
+	margin-left: 0px;
+	height: 30px;
+	margin-bottom: 5px;
+	margin-right: 0px;
+	display: inline;
+}
+</style>
+<script type="text/javascript" language="JavaScript">
+	function get_span_from(_this) {
+		var toks = _this.id.split(':');
+		var _id = toks[toks.length-1];
+		var _toks = _id.split('_');
+		var __id = _toks[_toks.length-1];
+		return $("#span"+__id);
+	}
+	var aColor = null;
+	$(document).ready(function(){
+		var w = $("#td_menu").width();
+		$(".optionLink").hover(
+			function (event) {
+				var _span = get_span_from(this);
+				if (_span) {
+					aColor = _span.css('background-color:');
+					_span.css('background-color:','#E7E7E7');
+					//alert('w='+w);
+				}
+			}
+			,
+			function (event) {
+				var _span = get_span_from(this);
+				if (_span) {
+					_span.css('background-color:',aColor);
+				}
+			}
+		);
+		var sa = $('.spanWrapper a');
+		if (sa) {
+			sa.css('padding','8px');
+			var _total_width = 0;
+			$(".spanWrapper").each(function(index) {
+				_total_width += parseInt($(this).css('width'));
+			});
+			var spaces = (Math.max(w,_total_width) - Math.min(w,_total_width))/sa.length;
+			$(".spanWrapper").each(function(index) {
+				$(this).css('margin-right', '0px');
+			});
+		}
+	 });
+</script>
+	<apex:form >
+	    <table width="100%">
+	        <tr>
+	            <td height="10px"></td>
+	        </tr>
+	        <tr>
+	            <td width="100%" align="left"><apex:image value="{!URLFOR($Resource.FWDesignerMarkePlaceNavigationStyleGuide, 'DMPortalHeader.jpg')}"/></td>
+	            <td width="*">&nbsp;</td>
+	        </tr>
+	        <tr>
+	            <table width="100%" colspan="2">
+	                <tr>
+	            <td width="10px">&nbsp;</td>
+	            <td id="td_menu" class="wrapTable" width="*" height="20px" align="left" style="border-color: #6C6D6F">
+	                <table width="100%">
+	                    <tr>
+	                        <td width="100%" height="25px">
+	                        	<div>
+		                            <div id="span_UpdateAccountInformation" class="spanWrapper" style="width: 190px">
+			                            <apex:commandLink id="anchor_UpdateAccountInformation" action="{!modifyAccountInformation}" value="Update Account Information" target="_top" rendered="{!(IsModifyAccountInformationPage == false)}"/>
+		                            </div>
+		                            <apex:outputText style="background-color:#E7E7E7;padding:8px;" value="Update Account Information" rendered="{!(IsModifyAccountInformationPage == true)}"/>
+		                            <div id="span_PrintTemporaryIDCard" class="spanWrapper" style="width: 150px">
+			                            <apex:commandLink id="anchor_PrintTemporaryIDCard" action="{!printTemporaryIDCardPDF}" value="Print Temporary ID Card" target="_top" rendered="{!(IsTemporaryIDPage == false)}"/>
+		                            </div>
+		                            <apex:outputText style="background-color:#E7E7E7;padding:8px;" value="Print Temporary ID Card" rendered="{!(IsTemporaryIDPage == true)}"/>
+		                            <div id="span_ContactUs" class="spanWrapper" style="width: 100px">
+			                            <apex:commandLink id="anchor_ContactUs" action="{!contactUs}" value="Contact Us" target="_top" rendered="{!(IsContactUsPage == false)}"/>
+		                            </div>
+		                            <apex:outputText style="background-color:#E7E7E7;padding:8px;" value="Contact Us" rendered="{!(IsContactUsPage == true)}"/>
+		                            <div id="span_ReturnToDesignerMarketplace" class="spanWrapper" style="width: 200px">
+			                            <apex:commandLink id="anchor_ReturnToDesignerMarketplace" action="{!returnToWSI}" value="Return to Designer Marketplace" target="_top"/>
+		                            </div>
+	                        	</div>
+	                        </td>
+	                    </tr>
+	                </table>
+	            </td>
+	            <td width="10px">&nbsp;</td>
+	                </tr>
+	            </table>
+	        </tr>
+	        <tr>
+	            <td colspan="2" width="100%" align="left"><apex:outputText value="{!status}"/></td>
+	        </tr>
+	    </table>
+	</apex:form>
+</apex:component>

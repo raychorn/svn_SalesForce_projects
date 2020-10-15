@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>ZI_Company2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>ZoomInfo Company ID2</label>
+        <length>12</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ZI_Company__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ZoomInfo Company ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ZI_ImportedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ZoomInfo Imported Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ZI_Person2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>ZoomInfo Person ID2</label>
+        <length>12</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ZI_Person__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ZoomInfo Person ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>Update_Lead</fullName>
+        <availability>online</availability>
+        <description>Update from ZoomInfo</description>
+        <displayType>button</displayType>
+        <height>2000</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Update from ZoomInfo</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Lead_Update_from_Zoom</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_Lead_s</fullName>
+        <availability>online</availability>
+        <description>Update from Zoom</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Update from ZoomInfo</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Lead_Update_from_Zoom</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>View_Company_Profile</fullName>
+        <availability>online</availability>
+        <description>View Company Profile</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>View Company Profile</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Lead_View_Company_Profile</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>View_Person_Profile</fullName>
+        <availability>online</availability>
+        <description>View Person Profile</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>View Person Profile</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Lead_View_Person_Profile</scontrol>
+    </webLinks>
+</CustomObject>

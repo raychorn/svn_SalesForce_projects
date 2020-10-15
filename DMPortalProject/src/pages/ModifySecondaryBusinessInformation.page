@@ -1,0 +1,209 @@
+<apex:page id="modifyAccount" controller="ModifySecondaryBusinessInformation" sidebar="false" showheader="false">
+<style type="text/css">
+.btn2
+{
+    margin: 0 0 0 0;
+    color:#ffffff; 
+     background-image: url("{!URLFOR($Resource.FWDesignerMarkePlaceNavigationStyleGuide, 'bgWhite.jpg')}");
+}
+.wrap {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.outerWrap {
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: silver;
+    width: 990px;
+    margin-left: 200px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+</style>
+    <apex:pageBlock id="mainBlock" mode="maindetail">
+        <div id="outerWrap" class="outerWrap">
+            <table>
+                <tr>
+                    <td width="0px"></td>
+                    <td width="100%">
+                        <c:PortalHeader />
+                        <div id="wrap" class="wrap">
+							<apex:pageBlock mode="maindetail" rendered="{!(isStatusVisible == true)}">
+								<span><B>{!status}</B></span>
+							</apex:pageBlock>
+                            <table width="60%">
+                                <tr>
+                                    <td colspan="3" width="100%">
+										<apex:pageBlock id="businessSecondFormViewBlock" mode="maindetail" rendered="{!(isChangingSecondaryLocation == false) && (hasSecondaryLocation == true)}">
+										    <apex:form id="businessSecondForm">
+												<table width="100%">
+												    <tr>
+												        <td colspan="3"><big><apex:outputText value="Secondary Business Information:" style="color:#6E6F71;font-weight:bold;"/></big></td>
+												    </tr>
+												    <tr>
+												        <td colspan="3"><apex:outputText value="This is the secondary business" style="color:#6E6F71;"/>&nbsp;<apex:outputText value="address of record for your company." style="color:#6E6F71;text-decoration: underline;"/>&nbsp;<apex:outputText value="If you have closed this location and need to update the address please click the button below to make your edits." style="color:#6E6F71;"/></td>
+												    </tr>
+												    <tr>
+												        <td colspan="3"><apex:outputText value="If you have opened an additional location please DO NOT modify this information. You can add the new location by clicking the button below." style="color:#6E6F71;" rendered="false"/></td>
+												    </tr>
+												    <tr>
+												        <td><apex:outputText value="Company Name" style="color:#6E6F71;"/></td>
+												        <td>&nbsp;&nbsp;&nbsp;</td>
+												        <td><apex:outputText value="Title" style="color:#6E6F71;"/></td>
+												    </tr>
+												    <tr>
+												        <td>
+												            <apex:outputText value="{!companyname}" style="color:#6E6F71;"/>
+												        </td>
+												        <td>&nbsp;&nbsp;&nbsp;</td>
+												        <td>
+												            <apex:outputText value="{!title}" style="color:#6E6F71;"/>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td colspan="3"><apex:outputText value="Mailing Address" style="color:#6E6F71;"/></td>
+												    </tr>
+												    <tr>
+												        <td colspan="3">
+												            <apex:outputText value="{!street}" style="color:#6E6F71;"/>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td><apex:outputText value="City" style="color:#6E6F71;"/></td>
+												        <td>&nbsp;&nbsp;&nbsp;</td>
+												        <td>
+												            <table width="100%">
+												                <tr>
+												                    <td width="33%"><apex:outputText value="State/Province" style="color:#6E6F71;"/></td>
+												                    <td width="33%"><apex:outputText value="ZIP/Postal Code" style="color:#6E6F71;"/></td>
+												                    <td width="33%"><apex:outputText value="Country" style="color:#6E6F71;"/></td>
+												                </tr>
+												            </table>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td>
+												            <apex:outputText value="{!city}" style="color:#6E6F71;"/>
+												        </td>
+												        <td>&nbsp;&nbsp;&nbsp;</td>
+												        <td>
+												            <table width="100%">
+												                <tr>
+												                    <td width="33%">
+												                        <apex:outputText value="{!state}" style="color:#6E6F71;"/>
+												                    </td>
+												                    <td width="33%">
+												                        <apex:outputText value="{!postal}" style="color:#6E6F71;"/>
+												                    </td>
+												                    <td width="33%">
+												                        <apex:outputText value="{!country}" style="color:#6E6F71;"/>
+												                    </td>
+												                </tr>
+												            </table>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td colspan="3">
+												            <apex:commandButton style="font-size:100%; color:#6E6F71; font-weight:bold; border:0px; " value="Change Secondary Location" action="{!modifySecondaryLocation}" rendered="{!(isChangingMember == false) && (isChangingContact == false) && (isChangingPassword == false) && (isChangingPrimaryLocation == false) && (isChangingSecondaryLocation == false)}"/>
+												        </td>
+												    </tr>
+												</table>
+										    </apex:form>
+										</apex:pageBlock>
+										<apex:pageBlock id="businessSecondFormBlock" mode="maindetail" rendered="{!(isChangingSecondaryLocation == true)}">
+										    <apex:form id="businessSecondForm">
+												<table width="100%">
+												    <tr>
+												        <td colspan="3"><span style="color:#6E6F71;font-weight:bold;"><big>Secondary Business Information:</big></span></td>
+												    </tr>
+												    <tr>
+												        <td colspan="3"><span style="color:#6E6F71;">This is the secondary business</span>&nbsp;<span style="color:#6E6F71;text-decoration: underline;">address of record for your company</span>.&nbsp;<span style="color:#6E6F71;">If you have closed this location and need to update the address please click the button below to make your edits.</span></td>
+												    </tr>
+												    <tr>
+												        <td><span style="color:#6E6F71;">Company Name*</span>&nbsp;&nbsp;&nbsp;<span style="color:#6E6F71;">* = required</span></td>
+												        <td></td>
+												        <td><span style="color:#6E6F71;">Title</span></td>
+												    </tr>
+												    <tr>
+												        <td>
+												        	<input id="companyname" name="companyname" value="{!companyname}" maxlength="64" style="color:#6E6F71; width: 300px"/>
+												        </td>
+												        <td>&nbsp;&nbsp;&nbsp;</td>
+												        <td>
+												        	<input id="title" name="title" value="{!title}" maxlength="64" style="color:#6E6F71; width: 300px"/>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td colspan="3"><span style="color:#6E6F71;">Mailing Address*</span></td>
+												    </tr>
+												    <tr>
+												        <td colspan="3" style="width: 300px">
+												        	<textarea id="street" name="street" rows="5" cols="50" style="color:#6E6F71;">{!street}</textarea>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td><span style="color:#6E6F71;">City</span></td>
+												        <td>&nbsp;&nbsp;&nbsp;</td>
+												        <td>
+												            <table width="100%">
+												                <tr>
+												                    <td width="33%"><span style="color:#6E6F71;">State/Province</span></td>
+												                    <td width="33%"><span style="color:#6E6F71;">ZIP/Postal Code</span></td>
+												                    <td width="33%"><span style="color:#6E6F71;">Country</span></td>
+												                </tr>
+												            </table>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td>
+												        	<input id="city" name="city" value="{!city}" maxlength="64" style="color:#6E6F71; width: 300px"/>
+												        </td>
+												        <td>&nbsp;&nbsp;&nbsp;</td>
+												        <td>
+												            <table width="100%">
+												                <tr>
+												                    <td width="33%">
+															        	<input id="state" name="state" value="{!state}" size="20" maxlength="64" style="color:#6E6F71;"/>
+												                    </td>
+												                    <td width="33%">
+															        	<input id="postal" name="postal" value="{!postal}" size="10" maxlength="64" style="color:#6E6F71;"/>
+												                    </td>
+												                    <td width="33%">
+															        	<input id="country" name="country" value="{!country}" size="15" maxlength="64" style="color:#6E6F71;"/>
+												                    </td>
+												                </tr>
+												            </table>
+												        </td>
+												    </tr>
+												    <tr>
+												        <td>
+												            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px; width:100px;" value="Change Secondary Location" action="{!changeSecondaryLocation}" image="{!URLFOR($Resource.fwbuttons, 'Submit01.png')}"/>
+												        </td>
+												        <td>
+												            <apex:commandButton style="font-size:100%; color:#6E6F71; font-weight:bold; border:0px; background-color: silver; width:100px;" value="Cancel Primary Location Change" action="{!cancelChangeSecondaryLocation}" image="{!URLFOR($Resource.fwbuttons, 'Cancel.png')}" rendered="{!(isChangingMember == false) && (isChangingContact == false) && (isChangingPassword == false) && (isChangingPrimaryLocation == false) && (isChangingSecondaryLocation == true)}"/>
+												        </td>
+												        <td>
+												        </td>
+												    </tr>
+												</table>
+										    </apex:form>
+										</apex:pageBlock>
+                                    </td>
+                                </tr>
+							    <tr>
+							        <td colspan="3" align="left">
+										<apex:form id="backForm">
+								            <apex:commandButton style="border:0px; width:100px;" id="cancelbtn" value="Back" action="{!cancel}" image="{!URLFOR($Resource.fwbuttons, 'Back.png')}" rendered="{!(isChangingMember == false) && (isChangingPassword == false) && (isChangingContact == false) && (isChangingPrimaryLocation == false)}"/>
+										</apex:form>
+							        </td>
+							    </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </apex:pageBlock>
+</apex:page>

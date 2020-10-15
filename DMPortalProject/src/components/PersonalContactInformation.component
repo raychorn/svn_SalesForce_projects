@@ -1,0 +1,130 @@
+<apex:component id="modifyContact" controller="PersonalContactInformation_Controller">
+<style type="text/css">
+</style>
+    <apex:form id="contactForm">
+     <apex:pageBlock id="mainBlock" mode="maindetail">
+		<table width="60%">
+		    <tr>
+		        <td width="80px"><apex:outputText value="Member ID: " style="color:#6E6F71;"/></td>
+		        <td>
+		        	<apex:outputText value="{!currentUser.Designer_ID__c}" style="color:#6E6F71; width:300px" rendered="{!(isChangingPassword == false)}"/>
+		        	<apex:inputText value="{!currentUser.Designer_ID__c}" id="memberid" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td><apex:outputText value="Level: " style="color:#6E6F71;"/></td>
+		        <td><apex:outputText value="{!currentUser.Account_Level__c}" id="membershiplevel" style="color:#6E6F71; width:300px"/></td>
+		    </tr>
+		    <tr>
+		        <td><apex:outputText value="Expires: " style="color:#6E6F71;"/></td>
+		        <td style="color:#6E6F71;"><apex:outputField value="{!currentUser.DTP_Card_Exp_Date_CLN__c}" id="membershipexpires" style="color:#6E6F71; width:300px"/>&nbsp;&nbsp;<apex:outputText value="Expires soon!" style="color:#6E6F71; font-weight:bold;" rendered="{!(isExpiring == true)}"/></td>
+		    </tr>
+		    <tr>
+		        <td></td>
+		        <td>
+		            <apex:commandButton style="font-size:80%; color:#6E6F71; font-weight:bold;" value="Extend Membership" rendered="{!(isExpiring == true)}" action="{!extendMembership}" image="{!URLFOR($Resource.fwbuttons, 'Extend Membership.png')}" rerender="mainBlock"/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td><big><apex:outputText value="Personal Contact Information:" style="color:#6E6F71;font-weight:bold;"/></big></td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td>&nbsp;</td>
+		    </tr>
+		    <tr>
+		        <td width="50%" align="left"><apex:outputText value="First Name*" style="color:#6E6F71;"/></td>
+		        <td width="0px"></td>
+		        <td width="50%" align="left">
+		            <table width="64%">
+		                <tr>
+		                    <td width="50%" align="left"><apex:outputText value="Last Name*" style="color:#6E6F71;"/></td>
+		                    <td width="50%" align="right"><apex:outputText value="* = required" style="color:#6E6F71;"/></td>
+		                </tr>
+		            </table>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td>
+		            <apex:inputText value="{!currentUser.FirstName}" id="firstname" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+		            <apex:outputText value="{!currentUser.FirstName}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td>
+		            <apex:inputText value="{!currentUser.LastName}" id="lastname" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+		            <apex:outputText value="{!currentUser.LastName}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td><apex:outputText value="Telephone Number" style="color:#6E6F71;"/></td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td><apex:outputText value="Fax" style="color:#6E6F71;"/></td>
+		    </tr>
+		    <tr>
+		        <td>
+		            <apex:inputText value="{!currentUser.Phone}" id="phone" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+		            <apex:outputText value="{!currentUser.Phone}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td>
+		            <apex:inputText value="{!currentUser.Fax}" id="fax" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+		            <apex:outputText value="{!currentUser.Fax}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td><apex:outputText value="E-mail Address*" style="color:#6E6F71;"/></td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td><apex:outputText value="Confirm E-mail Address*" style="color:#6E6F71;"/></td>
+		    </tr>
+		    <tr>
+		        <td>
+		            <apex:inputText value="{!currentUser.Email}" id="email" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+		            <apex:outputText value="{!currentUser.Email}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td>
+		            <apex:inputText value="{!confirmEmail}" id="confirmemail" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+		            <apex:outputText value="{!confirmEmail}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td></td>
+		        <td></td>
+		        <td><apex:outputText value="Emails do not match" style="color:#FF0000;" rendered="{!(emailMismatch == true)}"/></td>
+		    </tr>
+		    <tr>
+		        <td><apex:outputText value="Password: {!currentUser.eComm_Pswd__c}" style="color:#6E6F71;" rendered="{!(isChangingPassword == false)}"/></td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		    </tr>
+		    <tr>
+		        <td style="background-color: #cfcfcf;">
+		            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px;" value="Change Password" action="{!modifyUserPassword}" image="{!URLFOR($Resource.fwbuttons, 'ChangePassword.png')}" rendered="{!(isChangingPassword == false)}"/>
+		        </td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		    </tr>
+		        <tr>
+		        <td><apex:outputText value="Password*" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/></td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td><apex:outputText value="Confirm Password*" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/></td>
+		    </tr>
+		    <tr>
+		        <td><apex:inputText value="{!currentUser.eComm_Pswd__c}" id="password" style="color:#6E6F71; width: 300px"/></td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td><apex:inputText value="{!currentUser.eComm_Pswd__c}" id="confirmpassword" style="color:#6E6F71; width: 300px"/></td>
+		    </tr>
+		    <tr>
+		        <td></td>
+		        <td><apex:outputText value="{!status} isChangingPassword={!isChangingPassword}" style="color:#6E6F71;" rendered="{!isStatusVisible}"/></td>
+		        <td></td>
+		    </tr>
+		    <tr>
+		        <td>
+		            <apex:commandButton styleclass="btn2" style="font-size:80%; color:#6E6F71; font-weight:bold; border:0px;" value="Change Password" action="{!changeUserPassword}" image="{!URLFOR($Resource.fwbuttons, 'ChangePassword.png')}" rendered="{!(isChangingPassword == true)}"/>
+		        </td>
+		        <td>&nbsp;&nbsp;&nbsp;</td>
+		        <td><apex:commandButton style="font-size:100%; color:#6E6F71; font-weight:bold; border:0px; background-color: silver;" value="Cancel Change Password" action="{!cancelChangeUserPassword}" image="{!URLFOR($Resource.fwbuttons, 'Cancel.png')}" rendered="{!(isChangingPassword == true)}"/></td>
+		    </tr>
+		</table>
+     </apex:pageBlock>
+    </apex:form>
+</apex:component>

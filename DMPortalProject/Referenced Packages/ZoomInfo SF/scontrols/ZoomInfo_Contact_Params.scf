@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+var sCompanyName = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.Name, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sContactLink = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Contact.Link, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sZIPersonID = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Contact.ZI_Person2__c, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sFirstName = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Contact.FirstName, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sLastName = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Contact.LastName, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sZICompanyID = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.ZI_Company2__c, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sQueryID = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE($Request.QueryID, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }"; 
+
+var sZIContactParams = "&ContactId={!Contact.Id}&OrgId={!$Organization.Id}&CompanyName=" + sCompanyName + "&RetURL=" + sContactLink;
+
+var sZIContactNameParams = sZIContactParams + "&ZIPerson=" + sZIPersonID + "&FirstName=" + sFirstName + "&LastName=" + sLastName;
+
+var sZIContactCompanyParams = sZIContactParams + "&ZICompany=" + sZICompanyID + "&AccountId={!Account.Id}";
+
+var sZIContactParamsForceSelectCompany = "&ContactId={!Contact.Id}&OrgId={!$Organization.Id}&CompanyName=" + sCompanyName + "&RetURL=" + sContactLink + "&QueryID=" + sQueryID + "&AccountId={!Account.Id}";
+
+var sZIContactParamsForceSelectPerson = "&ContactId={!Contact.Id}&OrgId={!$Organization.Id}&CompanyName=" + sCompanyName + "&RetURL=" + sContactLink + "&QueryID=" + sQueryID + "&FirstName=" + sFirstName + "&LastName=" + sLastName;
+
+</script>

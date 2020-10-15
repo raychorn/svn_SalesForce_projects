@@ -1,0 +1,141 @@
+<apex:page controller="PrintTemporaryIDCard_Controller" showHeader="false" sidebar="false">
+
+<table width="832" border="0" align="center" cellpadding="56" cellspacing="0" bgcolor="#a6987c">
+  <tr>
+    <td><table width="720" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+        <tr>
+          <td align="center" valign="middle"><table width="682" border="0" cellspacing="0" cellpadding="0">
+              <tr> 
+                <td align="left" valign="top"><a href="http://www.wsidesignermarketplace.com">
+                	<img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/header_designer.gif" alt="Designer Marketplace, Williams-Sonoma, Inc." width="409" height="100" border="0"/></a>
+                </td>
+              </tr>
+              <tr> 
+                <td height="49" align="center" valign="top"><a href="http://www.wsidesignermarketplace.com"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/nav1.gif" alt="Welcome to WSI Designer Marketplace" width="428" height="15" border="0"/></a><a href="http://www.wsidesignermarketplace.com"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/nav_designer_marketplace.gif" alt="Designer Marketplace" width="137" height="15" border="0"/></a><a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/contact_us.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/nav_contactus.gif" alt="Contact Us" width="81" height="15" border="0"/></a><a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/shop_our_brands.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/nav_shop.gif" alt="Shop" width="35" height="15" border="0"/></a></td>
+              </tr>
+              <tr> 
+                <td height="197" align="center" valign="top"><table width="682" border="0" cellspacing="0" cellpadding="0">
+                    <tr> 
+                      <td width="331" align="left" valign="top">
+
+                      	 <a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/shop_our_brands.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/image.gif" width="311" height="420" border="0"/></a>
+
+                        <table width="311" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td width="1" rowspan="4" align="left" valign="top"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/boarder_left.gif" width="1" height="293"/></td>
+                            <td width="309" height="41" align="center" valign="top"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/boarder_top.gif" width="309" height="12"/><br/><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #333333">Issued: {!currentUser.CreatedDate}</font></td>
+                            <td width="1" rowspan="4" align="left" valign="top"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/boarder_right.gif" width="1" height="293"/></td>
+                          </tr>
+                          <tr> 
+                            <td height="72" align="center" valign="bottom"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/title_platinum.gif" alt="Platinum" width="71" height="32"/><br/><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/coupon_header.gif" alt="Williams-Sonoma, Inc. Design Trade Program" width="237" height="40"/></td>
+                          </tr>
+                          <tr>
+                            <td height="91" align="center" valign="bottom"><div align="center"><font color="#333333" size="3" face="Verdana, Arial, Helvetica, sans-serif" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px; color: #333333">{!currentUser.FirstName} {!currentUser.LastName}<br/><strong>Member ID: {!currentUser.Designer_ID__c}<br/>Password: {!currentUser.eComm_Pswd__c}</strong></font></div></td>
+                          </tr>
+                          <tr> 
+                            <td height="89" align="center" valign="bottom"><p><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/coupon_bottom.gif" alt="Temporary Card Valid for 45 Days;" width="309" height="63"/></p></td>
+                          </tr>
+                        </table>
+                        <table width="311" border="0" cellspacing="0" cellpadding="0">
+                          <tr> 
+                            <td height="56" align="center" valign="top"><div align="center"><font color="#333333" size="1" face="Verdana, Arial, Helvetica, sans-serif" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px; color: #333333">PASSWORD IS CASE SENSITIVE</font></div></td>
+                          </tr>
+                        </table></td>
+                      <td width="351" align="left" valign="top"><p><font color="#333333" size="3" face="Verdana, Arial, Helvetica, sans-serif" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px; color: #333333">Dear {!currentUser.FirstName},<br/><br/>Thank you for registering with our Design Trade Program. 
+                          Your permanent membership card will arrive by mail within 
+                          four weeks. <strong>Please remember to present your 
+                          membership ID card for all purchases.</strong> <br/>
+                          <br/>
+                          As a Platinum tier member, you can now enjoy the following 
+                          benefits:<br/>
+                          &#8226; A 20% discount off merchandise at Pottery Barn,<br/>
+                          &nbsp;&nbsp; Pottery Barn Kids, PBteen, West Elm, and 
+                          Williams-<br/>
+                          &nbsp;&nbsp; Sonoma Home. At the Williams-Sonoma brand, 
+                          trade<br/>
+                          &nbsp;&nbsp; discount remains 10%.*<br/>
+                          &#8226; Exclusive trade customer service<br/>
+                          &#8226; Seasonal product previews<br/>
+                          &#8226; Invitations to special store events</font></p>
+
+                        <p><font color="#333333" size="3" face="Verdana, Arial, Helvetica, sans-serif" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px; color: #333333"><strong>Shop online at WSIDesignerMarketplace.com** </strong><br/>
+                          Visit <a href="http://www.wsidesignermarketplace.com" style="color: #987c47; text-decoration: none"><font color="#987c47">www.WSIDesignerMarketplace.com</font></a> 
+                          to shop online and access exclusive trade content. Click 
+                          on <a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/shop_our_brands.html" style="color: #987c47; text-decoration: none"><font color="#987c47">Shop 
+                          Our Brands</font></a> and choose the brand you would 
+                          like to shop. Sign in with your Member ID and Password 
+                          to receive your discount and applicable tax exemption. 
+                          <br/>
+                          <br/>
+                          <strong>Shop our stores or with a Trade Representative</strong><br/>
+                          Present the temporary membership card and photo ID to 
+                          a Design Associate when visiting any of our retail locations. 
+                          You may also fax your order to a dedicated Trade Representative 
+                          at 702.360.7167 or email it to <a href="mailto:DesignerOrders@wsgc.com" style="color: #987c47; text-decoration: none"><font color="#987c47">DesignerOrders@wsgc.com</font></a>. 
+                          </font></p>
+
+                        <p><font color="#333333" size="3" face="Verdana, Arial, Helvetica, sans-serif" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px; color: #333333">We 
+                          appreciate your interest and look forward to serving 
+                          you at Williams-Sonoma, Inc. </font></p>
+                          
+                          
+                        <p><a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/shop_our_brands.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/button_startshopping.gif" alt="Start Shopping" width="123" height="40" border="0"/></a><br/>
+                          <font size="2" face="Verdana, Arial, Helvetica, sans-serif" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px; color: #333333">Need 
+                          help? Visit 
+                          <a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/how_to_shop_online.html" style="color: #987c47; text-decoration: none"><font color="#987c47">How to Shop Online</font></a>.<br/>
+                          &nbsp; </font></p>
+                          
+                          </td>
+                    </tr>
+                  </table></td>
+              </tr>
+              <tr> 
+                <td align="center" valign="top"><a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/shop_our_brands.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/billboard1.gif" alt="Shop Our Brands" width="680" height="69" border="0"/></a></td>
+              </tr>
+              <tr> 
+                <td align="center" valign="top"><a href="http://www.wsidesignermarketplace.com/content/designer/inside_our_studios/designer_blog.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/billboard2.gif" alt="Inside Our Studios" width="176" height="39" border="0"/></a><a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/become_a_member.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/billboard3.gif" alt="Become A Member" width="184" height="39" border="0"/></a><a href="http://www.wsidesignermarketplace.com/content/designer/trade_program/contact_us.html"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/billboard4.gif" alt="Contact Us" width="128" height="39" border="0"/></a><a href="http://twitter.com/wsidesigntrade"><img src="http://edm.williams-sonoma.com/ws/2010/0312_DTPWelcome-g/billboard5.gif" alt="Follow Us On Twitter" width="192" height="39" border="0"/></a></td>
+              </tr>
+              <tr> 
+                <td height="30" align="right" valign="middle">&nbsp;</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+
+<table width="832" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>&nbsp;<br/>
+      <font size="1" face="Helvetica, Arial, sans-serif" style="font-family: Helvetica, Arial, sans-serif; font-size: 10px; color: #999999"> 
+      * At the Williams-Sonoma brand: i) trade discount is limited to 10% regardless 
+      of membership tier; ii) no discount is available on the purchase of electrics 
+      or sale items. At all brands, discount is not valid with any other offer, 
+      coupon or discount, on Outlet purchases, gift cards, gift wrap, shipping 
+      and processing fees, taxes or for any products or services excluded by the 
+      Design Trade Program Terms &amp; Conditions. We require completed resale 
+      certificates or permits for each state where you are seeking tax exemption. 
+      To update your account, please call a Trade Representative at 888.837.4888 
+      or email <a href="mailto:businesssalesprogram@wsgc.com"><font color="#999999">businesssalesprogram@wsgc.com</font></a>. 
+      Your membership card, ID Number and Online Shopping Password are not transferable 
+      and may only be used by the named card holder. <strong>Cardholder must, 
+      in person, present his or her valid card and valid photo identification 
+      to receive the trade discount at time of purchase.</strong> This is not 
+      a credit card. We reserve the right to change the terms and conditions of 
+      the Program at our sole discretion without prior notice to members.<br/>
+      <br/>
+      Issuance of permanent Williams-Sonoma, Inc. Design Trade Program membership 
+      card is subject to verification of your designer credentials, and Terms 
+      &amp; Conditions posted at <a href="http://www.wsidesignermarketplace.com"><font color="#999999">www.wsidesignermarketplace.com</font></a>. 
+      This membership confirmation is valid for 45 days after the issue date noted. 
+      Qualified members will receive permanent card within four weeks of receipt 
+      of complete application. 
+      <p><strong>**Online trade shopping is available in the US only.</strong></p>
+      <p>&copy; 2010 Williams-Sonoma, Inc., Direct Marketing Dept., 3250 Van Ness 
+        Ave., San Francisco, CA 94109. All Rights Reserved.</p>
+        </font>
+      <p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+</apex:page>

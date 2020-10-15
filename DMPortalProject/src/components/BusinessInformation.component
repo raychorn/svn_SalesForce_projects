@@ -1,0 +1,120 @@
+<apex:component id="modifyBusiness" controller="ModifyBusinessInformation_Controller">
+    <apex:form id="businessForm">
+        <apex:pageBlock id="mainBlock" mode="maindetail">
+			<table width="60%">
+			    <tr>
+			        <td><big><apex:outputText value="Business Information:" style="color:#6E6F71;font-weight:bold;"/></big></td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td>&nbsp;</td>
+			    </tr>
+			    <tr>
+			        <td colspan="3"><apex:outputText value="This is the business" style="color:#6E6F71;"/>&nbsp;<apex:outputText value="address of record for your company." style="color:#6E6F71;text-decoration: underline;"/>&nbsp;<apex:outputText value="If you have closed this location and need to update the address please click the button below to make your edits." style="color:#6E6F71;"/></td>
+			    </tr>
+			    <tr>
+			        <td colspan="3"><apex:outputText value="If you have opened an additional location please DO NOT modify this information. You can add the new location by clicking the button below." style="color:#6E6F71;"/></td>
+			    </tr>
+			    <tr>
+			        <td>
+			            <apex:commandButton style="font-size:100%; color:#6E6F71; font-weight:bold; border:0px;" value="Current Location Closed" action="{!changeCurrentLocation}" image="{!URLFOR($Resource.fwbuttons, 'CurrentLocationClosed.png')}" rendered="{!(isViewingLocation == true)&&(isChangingPassword == false)}"/>
+			            <apex:commandButton style="font-size:100%; color:#6E6F71; font-weight:bold; border:0px; background-color: silver;" value="Cancel Location Change" action="{!cancelChangeCurrentLocation}" image="{!URLFOR($Resource.fwbuttons, 'Cancel.png')}" rendered="{!(isEditingLocation == true)&&(isChangingPassword == false)}"/>
+			        </td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td>
+			            <apex:commandButton style="font-size:100%; color:#6E6F71; font-weight:bold; border:0px;" value="Add Additional Location" action="{!addAdditionalLocation}" image="{!URLFOR($Resource.fwbuttons, 'AddNewLocation.png')}" rendered="{!(isViewingLocation == true)&&(isChangingPassword == false)}"/>
+			        </td>
+			    </tr>
+			    <tr>
+			        <td><apex:outputText value="Company Name*" style="color:#6E6F71;" rendered="{!(isChangingPassword == false)}"/></td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td><apex:outputText value="Title" style="color:#6E6F71;" rendered="{!(isChangingPassword == false)}"/></td>
+			    </tr>
+			    <tr>
+			        <td>
+			            <apex:inputText value="{!currentUser.CompanyName}" id="companyname" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+			            <apex:outputText value="{!currentUser.CompanyName}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+			        </td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td>
+			            <apex:inputText value="{!currentUser.Title}" id="title" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+			            <apex:outputText value="{!currentUser.Title}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+			        </td>
+			    </tr>
+			    <tr>
+			        <td><apex:outputText value="Mailing Address*" style="color:#6E6F71;"/></td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td></td>
+			    </tr>
+			    <tr>
+			        <td>
+			            <apex:inputField value="{!currentUser.Street}" id="street" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+			            <apex:outputText value="{!currentUser.Street}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+			        </td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td>&nbsp;</td>
+			    </tr>
+			    <tr>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			    </tr>
+			    <tr>
+			        <td><apex:outputText value="City" style="color:#6E6F71;"/></td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td>
+			            <table width="100%">
+			                <tr>
+			                    <td width="33%"><apex:outputText value="State/Province" style="color:#6E6F71;"/></td>
+			                    <td width="33%"><apex:outputText value="ZIP/Postal Code" style="color:#6E6F71;"/></td>
+			                    <td width="33%"><apex:outputText value="Country" style="color:#6E6F71;"/></td>
+			                </tr>
+			            </table>
+			        </td>
+			    </tr>
+			    <tr>
+			        <td>
+			            <apex:inputField value="{!currentUser.City}" id="city" style="color:#6E6F71; width: 300px" rendered="{!(isChangingPassword == false)}"/>
+			            <apex:outputText value="{!currentUser.City}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+			        </td>
+			        <td>&nbsp;&nbsp;&nbsp;</td>
+			        <td>
+			            <table width="100%">
+			                <tr>
+			                    <td width="33%">
+			                        <apex:inputText value="{!currentUser.State}" id="state" style="color:#6E6F71;" rendered="{!(isChangingPassword == false)}"/>
+			                        <apex:outputText value="{!currentUser.State}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+			                    </td>
+			                    <td width="33%">
+			                        <apex:inputField value="{!currentUser.PostalCode}" id="postal" style="color:#6E6F71;" rendered="{!(isChangingPassword == false)}"/>
+			                        <apex:outputText value="{!currentUser.PostalCode}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+			                    </td>
+			                    <td width="33%">
+			                        <apex:inputText value="{!currentUser.Country}" id="country" style="color:#6E6F71;" rendered="{!(isChangingPassword == false)}"/>
+			                        <apex:outputText value="{!currentUser.Country}" style="color:#6E6F71;" rendered="{!(isChangingPassword == true)}"/>
+			                    </td>
+			                </tr>
+			            </table>
+			        </td>
+			    </tr>
+			    <tr>
+			        <td></td>
+			        <td></td>
+			        <td></td>
+			    </tr>
+			    <tr>
+			        <td colspan="3">
+			            &nbsp;<apex:outputText value="{!errorMessage}" style="color:#FF0000;" rendered="{!(errorsOnPage == true)}"/>
+			        </td>
+			    </tr>
+			    <tr>
+			        <td align="center" style="width:50%;">
+			            <apex:commandButton style="border:0px" id="cancelbtn" value="Back" action="{!cancel}" image="{!URLFOR($Resource.fwbuttons, 'Back.png')}" rendered="{!(isChangingPassword == false)}"/>
+			        </td>
+			        <td>&nbsp;</td>
+			        <td align="center" style="width:50%;">
+			            <apex:commandButton styleclass="btn2" style="border:0px" image="{!URLFOR($Resource.fwbuttons, 'Submit01.png')}" id="savebtn" value="Save" action="{!save}" rendered="{!(isChangingPassword == false)}"/>
+			        </td>
+			    </tr>
+			</table>
+        </apex:pageBlock>
+    </apex:form>
+</apex:component>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>ZI_Company2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>ZoomInfo Company ID2</label>
+        <length>12</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ZI_Company__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ZoomInfo Company ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ZI_ImportedDate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>ZoomInfo Imported Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <webLinks>
+        <fullName>Find_Competitors</fullName>
+        <availability>online</availability>
+        <description>View Competitors</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Find Competitors</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Account_View_Competitors</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Find_Competitors_lnk</fullName>
+        <availability>online</availability>
+        <description>View Competitors</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Find Competitors</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Account_View_Competitors</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Find_Employees</fullName>
+        <availability>online</availability>
+        <description>Find Employees</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Find Employees</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Account_Find_Employee</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Find_Employees_lnk</fullName>
+        <availability>online</availability>
+        <description>Find the employees for a company</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Find Employees</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Account_Find_Employee</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_Account_s</fullName>
+        <availability>online</availability>
+        <description>Update Account with ZoomInfo Company</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Update from ZoomInfo</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Account_Update_from_Zoom</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_with_ZoomInfo</fullName>
+        <availability>online</availability>
+        <description>Update from ZoomInfo</description>
+        <displayType>button</displayType>
+        <height>2000</height>
+        <linkType>sControl</linkType>
+        <masterLabel>Update from ZoomInfo</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Account_Update_from_Zoom</scontrol>
+    </webLinks>
+    <webLinks>
+        <fullName>View_Company_Profile</fullName>
+        <availability>online</availability>
+        <description>View Company Profile</description>
+        <displayType>link</displayType>
+        <height>600</height>
+        <linkType>sControl</linkType>
+        <masterLabel>View Company Profile</masterLabel>
+        <openType>noSidebar</openType>
+        <protected>false</protected>
+        <scontrol>Account_View_Company_Profile</scontrol>
+    </webLinks>
+</CustomObject>

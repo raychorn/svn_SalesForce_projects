@@ -1,0 +1,23 @@
+<apex:page standardController="Lead" Extensions="clsConvertLead">
+
+<apex:form >
+
+    <apex:pageBlock >
+    
+        <apex:pageBlockButtons >
+        
+        </apex:pageBlockButtons>
+        
+        <apex:pageBlockSection >
+        
+            <apex:inputField value="{!Lead.OwnerID}"/>
+            <apex:inputField value="{!ACC.ID}"/>
+            <apex:inputField value="{!OPP.ID}"/>                        
+            
+        </apex:pageBlockSection>
+    
+    </apex:pageBlock>
+    
+</apex:form>
+
+</apex:page>

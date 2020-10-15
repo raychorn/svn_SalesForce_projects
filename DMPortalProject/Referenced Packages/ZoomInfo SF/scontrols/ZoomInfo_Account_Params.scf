@@ -1,0 +1,11 @@
+<script type="text/javascript">
+
+var sZICompanyID = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.ZI_Company2__c, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sCompanyName = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.Name, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+var sAccountLink = "{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Account.Link, '<', '%3C') ,'>','%3E') ,'"','%22'),"'","%27"), ";","%3B") }";
+
+var sZIAccountParams = "&AccountId={!Account.Id}&OrgId={!$Organization.Id}&ZICompany=" + sZICompanyID  + "&CompanyName=" + sCompanyName + "&RetURL=" + sAccountLink;
+
+var sZIAccountParamsForceSelect = "&AccountId={!Account.Id}&OrgId={!$Organization.Id}&CompanyName=" + sCompanyName + "&RetURL=" + sAccountLink;
+
+</script>

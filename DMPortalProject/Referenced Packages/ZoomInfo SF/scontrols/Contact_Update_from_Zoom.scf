@@ -1,0 +1,15 @@
+<html>
+<head>
+<script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script>
+{!INCLUDE($SControl.ZoomInfo_Main_Params)}
+{!INCLUDE($SControl.ZoomInfo_Contact_Params)}
+<script type="text/javascript">
+
+var sZIPageUrl = sZIPersonUrl;
+var sZIParams = sZIContactNameParams + "&View=false&Type=Contact";
+location.replace(sZIPageUrl + sZIParams);
+
+</script>
+</head>
+<body></body>
+</html>
